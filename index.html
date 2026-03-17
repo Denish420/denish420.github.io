@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Denish J. M. — Mechanical Engineer</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔱</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#F7F6F3;
+  --surface:#FFFFFF;
+  --surface2:#F0EEE9;
+  --navy:#1B2A4A;
+  --navy-soft:#2C3E6B;
+  --navy-muted:#4A5E82;
+  --text:#1A1A1A;
+  --text2:#555555;
+  --text3:#999999;
+  --border:#E5E2DC;
+  --accent:#C9A84C;
+  --radius:12px;
+  --radius-lg:20px;
+  --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 16px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 24px rgba(0,0,0,0.08);
+  --font:'DM Sans',sans-serif;
+  --serif:'DM Serif Display',serif;
+  --mono:'DM Mono',monospace;
+}
+
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+
+/* ---- NOISE TEXTURE OVERLAY ---- */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:0.4;
+}
+
+/* ---- TOPBAR ---- */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:56px;background:rgba(247,246,243,0.85);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 24px;gap:8px;
+}
+.topbar-logo{
+  font-family:var(--serif);font-size:17px;color:var(--navy);
+  text-decoration:none;margin-right:auto;letter-spacing:-0.3px;
+}
+.topbar-logo em{font-style:italic;color:var(--accent)}
+.topbar-links{display:flex;gap:4px}
+.topbar-links a{
+  font-size:12px;font-weight:500;color:var(--text2);
+  text-decoration:none;padding:5px 10px;
+  border-radius:8px;transition:all 0.15s;
+}
+.topbar-links a:hover{background:var(--surface2);color:var(--navy)}
+.lang-btn{
+  font-size:12px;font-weight:600;color:var(--navy);
+  background:var(--surface2);border:1.5px solid var(--border);
+  padding:5px 12px;border-radius:8px;cursor:pointer;
+  transition:all 0.15s;font-family:var(--font);
+}
+.lang-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* ---- HERO ---- */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:80px 24px 60px;max-width:900px;margin:0 auto;
+  position:relative;z-index:1;
+}
+.hero-inner{display:grid;grid-template-columns:1fr;gap:40px;width:100%}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--navy-muted);
+  margin-bottom:16px;
+}
+.hero-tag::before{content:'';width:24px;height:1px;background:var(--accent)}
+.hero-name{
+  font-family:var(--serif);font-size:clamp(42px,8vw,72px);
+  color:var(--navy);line-height:1.05;letter-spacing:-1px;
+  margin-bottom:8px;
+}
+.hero-name em{font-style:italic;color:var(--accent)}
+.hero-role{
+  font-size:16px;font-weight:300;color:var(--text2);
+  margin-bottom:24px;letter-spacing:0.2px;
+}
+.hero-bio{
+  font-size:15px;line-height:1.75;color:var(--text2);
+  max-width:520px;margin-bottom:32px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font);font-size:13px;font-weight:600;
+  padding:10px 20px;border-radius:10px;
+  border:none;cursor:pointer;text-decoration:none;
+  transition:all 0.2s;white-space:nowrap;
+}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--navy-soft);transform:translateY(-1px);box-shadow:0 4px 16px rgba(27,42,74,0.25)}
+.btn-outline{background:transparent;color:var(--navy);border:1.5px solid var(--border)}
+.btn-outline:hover{border-color:var(--navy);background:var(--surface)}
+
+/* Photo area */
+.hero-photo{
+  width:120px;height:120px;border-radius:50%;
+  background:var(--surface2);border:3px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:42px;overflow:hidden;position:relative;
+  flex-shrink:0;
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-photo-placeholder{font-size:42px;user-select:none}
+.hero-top{display:flex;align-items:flex-start;gap:24px}
+.hero-text{flex:1}
+
+/* Stats row */
+.hero-stats{
+  display:flex;gap:24px;flex-wrap:wrap;
+  padding:20px 0;border-top:1px solid var(--border);
+  margin-top:8px;
+}
+.hero-stat-val{font-size:22px;font-weight:300;color:var(--navy);letter-spacing:-0.5px}
+.hero-stat-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;margin-top:2px}
+
+/* ---- SECTIONS ---- */
+.section{max-width:900px;margin:0 auto;padding:60px 24px;position:relative;z-index:1}
+.section+.section{padding-top:0}
+.section-label{
+  font-size:11px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--accent);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.section-title{
+  font-family:var(--serif);font-size:clamp(26px,4vw,36px);
+  color:var(--navy);letter-spacing:-0.5px;margin-bottom:32px;
+  line-height:1.2;
+}
+
+/* ---- AI SUMMARY ---- */
+.ai-summary-card{
+  background:var(--navy);color:#fff;
+  border-radius:var(--radius-lg);padding:28px;
+  margin-bottom:40px;position:relative;overflow:hidden;
+}
+.ai-summary-card::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:160px;height:160px;border-radius:50%;
+  background:rgba(201,168,76,0.12);
+}
+.ai-summary-label{
+  font-size:10px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:12px;
+  display:flex;align-items:center;gap:6px;
+}
+.ai-summary-text{font-size:14px;line-height:1.8;color:rgba(255,255,255,0.85);margin-bottom:16px;min-height:60px}
+.ai-summary-btn{
+  font-size:12px;font-weight:600;color:var(--accent);
+  background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);
+  padding:7px 14px;border-radius:8px;cursor:pointer;
+  font-family:var(--font);transition:all 0.15s;
+}
+.ai-summary-btn:hover{background:rgba(201,168,76,0.25)}
+
+/* ---- EXPERIENCE ---- */
+.timeline{display:flex;flex-direction:column;gap:0}
+.timeline-item{
+  display:grid;grid-template-columns:80px 1fr;
+  gap:0 20px;position:relative;padding-bottom:32px;
+}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-year{
+  font-size:11px;font-weight:600;color:var(--text3);
+  padding-top:4px;text-align:right;font-family:var(--mono);
+}
+.timeline-content{
+  border-left:2px solid var(--border);padding-left:24px;
+  position:relative;
+}
+.timeline-content::before{
+  content:'';position:absolute;left:-5px;top:8px;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--accent);border:2px solid var(--bg);
+}
+.timeline-role{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:2px}
+.timeline-company{font-size:13px;color:var(--text2);margin-bottom:8px}
+.timeline-desc{font-size:13px;color:var(--text2);line-height:1.7}
+
+/* ---- SKILLS ---- */
+.skills-grid{display:flex;flex-wrap:wrap;gap:8px}
+.skill-pill{
+  font-size:12px;font-weight:500;
+  padding:6px 14px;border-radius:20px;
+  background:var(--surface);border:1.5px solid var(--border);
+  color:var(--text2);transition:all 0.15s;cursor:default;
+}
+.skill-pill:hover{border-color:var(--navy);color:var(--navy);background:var(--surface2)}
+.skill-pill.highlight{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* ---- EDUCATION / CERTS ---- */
+.card-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.info-card{
+  background:var(--surface);border-radius:var(--radius);
+  border:1.5px solid var(--border);padding:20px;
+  transition:border-color 0.15s;
+}
+.info-card:hover{border-color:var(--navy-muted)}
+.info-card-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.info-card-sub{font-size:13px;color:var(--text2);margin-bottom:4px}
+.info-card-meta{font-size:11px;color:var(--text3);font-family:var(--mono)}
+
+/* ---- PROJECTS ---- */
+.projects-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.project-card{
+  background:var(--surface);border-radius:var(--radius-lg);
+  border:1.5px solid var(--border);padding:24px;
+  transition:all 0.2s;
+}
+.project-card:hover{border-color:var(--navy-muted);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.project-icon{font-size:28px;margin-bottom:12px}
+.project-title{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.project-desc{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:12px}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px}
+.project-tag{
+  font-size:11px;font-weight:500;padding:3px 10px;
+  border-radius:20px;background:var(--surface2);color:var(--text2);
+}
+
+/* ---- AI CHAT ---- */
+.chat-section{
+  background:var(--navy);border-radius:var(--radius-lg);
+  padding:32px;margin:0 auto;max-width:900px;
+  position:relative;z-index:1;margin-bottom:60px;
+}
+.chat-section-label{
+  font-size:10px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--accent);margin-bottom:8px;
+}
+.chat-section-title{
+  font-family:var(--serif);font-size:24px;color:#fff;
+  margin-bottom:6px;letter-spacing:-0.3px;
+}
+.chat-section-sub{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:24px}
+.chat-messages{
+  min-height:120px;max-height:320px;overflow-y:auto;
+  margin-bottom:16px;display:flex;flex-direction:column;gap:12px;
+}
+.chat-msg{font-size:13px;line-height:1.7;padding:12px 16px;border-radius:10px;max-width:85%}
+.chat-msg.user{background:rgba(255,255,255,0.1);color:#fff;align-self:flex-end}
+.chat-msg.ai{background:rgba(201,168,76,0.15);color:rgba(255,255,255,0.9);border:1px solid rgba(201,168,76,0.2)}
+.chat-msg.ai strong{color:var(--accent)}
+.chat-input-row{display:flex;gap:10px}
+.chat-input{
+  flex:1;font-family:var(--font);font-size:13px;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  color:#fff;padding:10px 14px;border-radius:10px;outline:none;
+  transition:border-color 0.15s;
+}
+.chat-input::placeholder{color:rgba(255,255,255,0.3)}
+.chat-input:focus{border-color:rgba(201,168,76,0.5)}
+.chat-send{
+  font-family:var(--font);font-size:13px;font-weight:600;
+  background:var(--accent);color:var(--navy);
+  border:none;padding:10px 18px;border-radius:10px;cursor:pointer;
+  transition:all 0.15s;white-space:nowrap;
+}
+.chat-send:hover{opacity:0.9}
+.chat-send:disabled{opacity:0.5;cursor:not-allowed}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.chat-suggestion{
+  font-size:11px;font-weight:500;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  color:rgba(255,255,255,0.6);padding:5px 12px;border-radius:20px;
+  cursor:pointer;transition:all 0.15s;font-family:var(--font);
+}
+.chat-suggestion:hover{background:rgba(201,168,76,0.15);border-color:rgba(201,168,76,0.3);color:rgba(255,255,255,0.9)}
+
+/* ---- FOOTER ---- */
+footer{
+  border-top:1px solid var(--border);
+  padding:32px 24px;text-align:center;
+  position:relative;z-index:1;
+}
+.footer-name{font-family:var(--serif);font-size:20px;color:var(--navy);margin-bottom:8px}
+.footer-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.footer-links a{font-size:12px;color:var(--text3);text-decoration:none;transition:color 0.15s}
+.footer-links a:hover{color:var(--navy)}
+.footer-copy{font-size:11px;color:var(--text3)}
+
+/* ---- ADMIN PANEL ---- */
+.admin-overlay{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;padding:16px;
+}
+.admin-overlay.open{display:flex}
+.admin-panel{
+  background:var(--surface);border-radius:var(--radius-lg);
+  width:100%;max-width:560px;max-height:90vh;overflow-y:auto;
+  padding:28px;box-shadow:var(--shadow-md);
+}
+.admin-title{font-size:18px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.admin-sub{font-size:13px;color:var(--text3);margin-bottom:24px}
+.form-group{margin-bottom:16px}
+.form-label{display:block;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.form-control{
+  width:100%;font-family:var(--font);font-size:13px;
+  color:var(--text);background:var(--bg);
+  border:1.5px solid var(--border);border-radius:8px;
+  padding:9px 12px;outline:none;transition:border-color 0.15s;
+  -webkit-appearance:none;
+}
+.form-control:focus{border-color:var(--navy)}
+textarea.form-control{resize:vertical;min-height:80px;font-family:var(--mono);font-size:12px}
+.admin-close{
+  float:right;background:none;border:none;
+  font-size:20px;cursor:pointer;color:var(--text3);
+  line-height:1;padding:0;
+}
+.admin-close:hover{color:var(--text)}
+.admin-tabs{display:flex;gap:4px;background:var(--surface2);padding:4px;border-radius:8px;margin-bottom:20px}
+.admin-tab{
+  flex:1;font-family:var(--font);font-size:12px;font-weight:500;
+  padding:6px 4px;border:none;cursor:pointer;border-radius:6px;
+  background:transparent;color:var(--text2);transition:all 0.15s;
+}
+.admin-tab.active{background:var(--surface);color:var(--navy);font-weight:600;box-shadow:var(--shadow)}
+.admin-pane{display:none}
+.admin-pane.active{display:block}
+
+/* ---- SPINNER ---- */
+.spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,0.2);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---- TOAST ---- */
+.toast{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--navy);color:#fff;padding:10px 20px;border-radius:10px;
+  font-size:13px;font-weight:500;z-index:300;
+  opacity:0;transition:all 0.3s;pointer-events:none;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---- LANGUAGE TRANSITION ---- */
+[data-en],[data-de]{transition:opacity 0.2s}
+
+/* ---- RESPONSIVE ---- */
+@media(min-width:640px){
+  .hero-inner{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:repeat(2,1fr)}
+  .projects-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(min-width:900px){
+  .projects-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:480px){
+  .topbar-links{display:none}
+  .hero-name{font-size:38px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar">
+  <a class="topbar-logo" href="#top">D<em>.</em>JM</a>
+  <div class="topbar-links">
+    <a href="#experience" data-en="Experience" data-de="Erfahrung">Experience</a>
+    <a href="#skills" data-en="Skills" data-de="Kenntnisse">Skills</a>
+    <a href="#projects" data-en="Projects" data-de="Projekte">Projects</a>
+    <a href="#chat" data-en="Ask AI" data-de="KI fragen">Ask AI</a>
+  </div>
+  <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">🇩🇪 DE</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-top">
+        <div class="hero-text">
+          <div class="hero-tag" data-en="Mechanical Engineer · Trier, Germany" data-de="Maschinenbauingenieur · Trier, Deutschland">Mechanical Engineer · Trier, Germany</div>
+          <h1 class="hero-name">Denish<br><em>J. M.</em></h1>
+          <p class="hero-role" data-en="M.Sc. Mechanical Engineering · Hochschule Trier" data-de="M.Sc. Maschinenbau · Hochschule Trier">M.Sc. Mechanical Engineering · Hochschule Trier</p>
+        </div>
+        <div class="hero-photo" id="heroPhoto">
+          <span class="hero-photo-placeholder">🧑‍💻</span>
+        </div>
+      </div>
+      <p class="hero-bio" id="heroBio" data-en="Simulation-focused engineer with hands-on experience in FEM, crash safety, and CAE tooling. Passionate about pushing boundaries in automotive and semiconductor process simulation." data-de="Simulationsorientierter Ingenieur mit praktischer Erfahrung in FEM, Crashsicherheit und CAE-Tools. Leidenschaftlich für Automotive- und Halbleiterprozesssimulationen.">
+        Simulation-focused engineer with hands-on experience in FEM, crash safety, and CAE tooling. Passionate about pushing boundaries in automotive and semiconductor process simulation.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="openAdmin()" data-en="✏️ Update Profile" data-de="✏️ Profil aktualisieren">✏️ Update Profile</button>
+        <a class="btn btn-outline" href="https://linkedin.com/in/" target="_blank" data-en="LinkedIn" data-de="LinkedIn">LinkedIn</a>
+        <a class="btn btn-outline" href="/cdn-cgi/l/email-protection#0a6e6f646379624a6f726b677a666f24696567" id="contactBtn" data-en="Contact" data-de="Kontakt">Contact</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val" id="statYears">3+</div>
+          <div class="hero-stat-label" data-en="Years Experience" data-de="Jahre Erfahrung">Years Experience</div>
+        </div>
+        <div>
+          <div class="hero-stat-val" id="statProjects">4</div>
+          <div class="hero-stat-label" data-en="Major Projects" data-de="Hauptprojekte">Major Projects</div>
+        </div>
+        <div>
+          <div class="hero-stat-val" id="statSkills">10+</div>
+          <div class="hero-stat-label" data-en="Tools & Skills" data-de="Tools & Kenntnisse">Tools & Skills</div>
+        </div>
+        <div>
+          <div class="hero-stat-val" id="statCerts">5</div>
+          <div class="hero-stat-label" data-en="Certifications" data-de="Zertifikate">Certifications</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / AI SUMMARY -->
+<section class="section" id="about">
+  <div class="ai-summary-card">
+    <div class="ai-summary-label">✦ <span data-en="AI Generated Bio" data-de="KI-generierte Bio">AI Generated Bio</span></div>
+    <p class="ai-summary-text" id="aiSummaryText" data-en="Click the button below to generate a fresh AI-written bio based on your profile." data-de="Klicken Sie auf die Schaltfläche, um eine neue KI-generierte Bio zu erstellen.">Click the button below to generate a fresh AI-written bio based on your profile.</p>
+    <button class="ai-summary-btn" onclick="generateSummary()" id="summaryBtn" data-en="✦ Generate AI Bio" data-de="✦ KI-Bio generieren">✦ Generate AI Bio</button>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-label" data-en="Career" data-de="Karriere">Career</div>
+  <h2 class="section-title" data-en="Experience" data-de="Berufserfahrung">Experience</h2>
+  <div class="timeline" id="experienceTimeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2022</div>
+      <div class="timeline-content">
+        <div class="timeline-role" data-en="Production Engineer" data-de="Produktionsingenieur">Production Engineer</div>
+        <div class="timeline-company">Navkar Ispat</div>
+        <div class="timeline-desc" data-en="Improved productivity by 20% and reduced downtime by 15% through process optimization and root cause analysis." data-de="Produktivität um 20% gesteigert und Ausfallzeiten um 15% durch Prozessoptimierung reduziert.">Improved productivity by 20% and reduced downtime by 15% through process optimization and root cause analysis.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2021</div>
+      <div class="timeline-content">
+        <div class="timeline-role" data-en="CAD Intern" data-de="CAD-Praktikant">CAD Intern</div>
+        <div class="timeline-company">SOPAN Infotech</div>
+        <div class="timeline-desc" data-en="Designed and modelled mechanical components using SolidWorks and AutoCAD for industrial clients." data-de="Mechanische Bauteile mit SolidWorks und AutoCAD für Industriekunden modelliert.">Designed and modelled mechanical components using SolidWorks and AutoCAD for industrial clients.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2020</div>
+      <div class="timeline-content">
+        <div class="timeline-role" data-en="Machine Assembly Intern" data-de="Maschinenmontage-Praktikant">Machine Assembly Intern</div>
+        <div class="timeline-company">SHIP Machine Tools</div>
+        <div class="timeline-desc" data-en="Hands-on assembly, quality checks, and technical documentation for precision machine tools." data-de="Montage, Qualitätsprüfung und technische Dokumentation für Präzisionsmaschinen.">Hands-on assembly, quality checks, and technical documentation for precision machine tools.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-label" data-en="Toolbox" data-de="Werkzeugkasten">Toolbox</div>
+  <h2 class="section-title" data-en="Skills & Tools" data-de="Kenntnisse & Tools">Skills & Tools</h2>
+  <div class="skills-grid" id="skillsGrid">
+    <span class="skill-pill highlight">ANSYS Workbench</span>
+    <span class="skill-pill highlight">COMSOL Multiphysics</span>
+    <span class="skill-pill highlight">MADYMO</span>
+    <span class="skill-pill">SolidWorks (CSWA)</span>
+    <span class="skill-pill">AutoCAD</span>
+    <span class="skill-pill">Fusion 360</span>
+    <span class="skill-pill">3DEXPERIENCE</span>
+    <span class="skill-pill">Python</span>
+    <span class="skill-pill">MATLAB</span>
+    <span class="skill-pill">ROS1</span>
+    <span class="skill-pill">SAP ERP</span>
+    <span class="skill-pill">FEM Simulation</span>
+    <span class="skill-pill">Crash Safety</span>
+    <span class="skill-pill">Shearography</span>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-label" data-en="Work" data-de="Arbeit">Work</div>
+  <h2 class="section-title" data-en="Projects" data-de="Projekte">Projects</h2>
+  <div class="projects-grid" id="projectsGrid">
+    <div class="project-card">
+      <div class="project-icon">⚙️</div>
+      <div class="project-title" data-en="Thermomechanical FEM Gearbox" data-de="Thermomechanisches FEM-Getriebe">Thermomechanical FEM Gearbox</div>
+      <div class="project-desc" data-en="Full FEM simulation of gearbox under thermal and mechanical loads using ANSYS Workbench. Analyzed stress, deformation, and fatigue." data-de="Vollständige FEM-Simulation eines Getriebes unter thermischen und mechanischen Lasten mit ANSYS Workbench.">Full FEM simulation of gearbox under thermal and mechanical loads using ANSYS Workbench. Analyzed stress, deformation, and fatigue.</div>
+      <div class="project-tags">
+        <span class="project-tag">ANSYS</span>
+        <span class="project-tag">FEM</span>
+        <span class="project-tag">Thermal</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🚗</div>
+      <div class="project-title" data-en="MADYMO Occupant Safety" data-de="MADYMO Insassensicherheit">MADYMO Occupant Safety</div>
+      <div class="project-desc" data-en="Crash simulation with HIC below 400. Modelled occupant kinematics and restraint systems to meet automotive safety standards." data-de="Crashsimulation mit HIC unter 400. Modellierung der Insassenkinematik und Rückhaltesysteme.">Crash simulation with HIC below 400. Modelled occupant kinematics and restraint systems to meet automotive safety standards.</div>
+      <div class="project-tags">
+        <span class="project-tag">MADYMO</span>
+        <span class="project-tag">Crash</span>
+        <span class="project-tag">Safety</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🔬</div>
+      <div class="project-title" data-en="Shearography Fringe Simulation" data-de="Shearografie-Streifensimulation">Shearography Fringe Simulation</div>
+      <div class="project-desc" data-en="Simulated in-plane deformation fringe patterns using MATLAB and InterShear framework. Generated 45 fringe images across multiple wavelengths." data-de="Simulierte ebene Verformungsstreifenmuster mit MATLAB und InterShear-Framework.">Simulated in-plane deformation fringe patterns using MATLAB and InterShear framework. Generated 45 fringe images across multiple wavelengths.</div>
+      <div class="project-tags">
+        <span class="project-tag">MATLAB</span>
+        <span class="project-tag">ANSYS</span>
+        <span class="project-tag">Optics</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-icon">🛡️</div>
+      <div class="project-title" data-en="Seatbelt Redesign" data-de="Sicherheitsgurt-Neugestaltung">Seatbelt Redesign</div>
+      <div class="project-desc" data-en="Redesigned seatbelt geometry and load distribution for improved occupant protection during frontal and oblique crash scenarios." data-de="Neugestaltung der Sicherheitsgurtgeometrie für verbesserten Insassenschutz bei Frontal- und Schrägaufprall.">Redesigned seatbelt geometry and load distribution for improved occupant protection during frontal and oblique crash scenarios.</div>
+      <div class="project-tags">
+        <span class="project-tag">Safety</span>
+        <span class="project-tag">CAD</span>
+        <span class="project-tag">Simulation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="section-label" data-en="Background" data-de="Hintergrund">Background</div>
+  <h2 class="section-title" data-en="Education" data-de="Ausbildung">Education</h2>
+  <div class="card-grid" id="educationGrid">
+    <div class="info-card">
+      <div class="info-card-title" data-en="M.Sc. Mechanical Engineering" data-de="M.Sc. Maschinenbau">M.Sc. Mechanical Engineering</div>
+      <div class="info-card-sub">Hochschule Trier</div>
+      <div class="info-card-meta">2023 — Present · Trier, Germany</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" data-en="B.E. Mechanical Engineering" data-de="B.E. Maschinenbau">B.E. Mechanical Engineering</div>
+      <div class="info-card-sub" data-en="India" data-de="Indien">India</div>
+      <div class="info-card-meta">2018 — 2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certifications">
+  <div class="section-label" data-en="Credentials" data-de="Nachweise">Credentials</div>
+  <h2 class="section-title" data-en="Certifications" data-de="Zertifikate">Certifications</h2>
+  <div class="card-grid" id="certsGrid">
+    <div class="info-card">
+      <div class="info-card-title">SolidWorks CSWA</div>
+      <div class="info-card-sub">Dassault Systèmes</div>
+      <div class="info-card-meta">Certified Associate</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">3DEXPERIENCE</div>
+      <div class="info-card-sub">Dassault Systèmes</div>
+      <div class="info-card-meta">Platform Certified</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" data-en="Semiconductor Process Simulation" data-de="Halbleiterprozesssimulation">Semiconductor Process Simulation</div>
+      <div class="info-card-sub">Purdue University</div>
+      <div class="info-card-meta" data-en="Online Course" data-de="Online-Kurs">Online Course</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">Python Programming</div>
+      <div class="info-card-sub">Google / Coursera</div>
+      <div class="info-card-meta" data-en="Certified" data-de="Zertifiziert">Certified</div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title" data-en="German Language B1" data-de="Deutsch B1">German Language B1</div>
+      <div class="info-card-sub" data-en="Goethe Institut" data-de="Goethe-Institut">Goethe Institut</div>
+      <div class="info-card-meta">B1 Level</div>
+    </div>
+  </div>
+</section>
+
+<!-- AI CHAT -->
+<div class="chat-section" id="chat">
+  <div class="chat-section-label">✦ AI ASSISTANT</div>
+  <h2 class="chat-section-title" data-en="Ask me anything" data-de="Frag mich alles">Ask me anything</h2>
+  <p class="chat-section-sub" data-en="Powered by AI — ask about my experience, projects, or skills." data-de="Powered by KI — fragen Sie nach Erfahrung, Projekten oder Kenntnissen.">Powered by AI — ask about my experience, projects, or skills.</p>
+  <div class="chat-suggestions">
+    <button class="chat-suggestion" onclick="askSuggestion(this)" data-en="What tools do you use?" data-de="Welche Tools nutzt du?">What tools do you use?</button>
+    <button class="chat-suggestion" onclick="askSuggestion(this)" data-en="Tell me about your projects" data-de="Erzähl mir von deinen Projekten">Tell me about your projects</button>
+    <button class="chat-suggestion" onclick="askSuggestion(this)" data-en="Are you open to internships?" data-de="Bist du offen für Praktika?">Are you open to internships?</button>
+    <button class="chat-suggestion" onclick="askSuggestion(this)" data-en="What is your thesis about?" data-de="Worum geht es in deiner Abschlussarbeit?">What is your thesis about?</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg ai" data-en="Hi! I'm Denish's AI assistant. Ask me anything about his background, skills, or projects." data-de="Hallo! Ich bin Denishs KI-Assistent. Fragen Sie mich alles über seinen Hintergrund, seine Kenntnisse oder Projekte.">Hi! I'm Denish's AI assistant. Ask me anything about his background, skills, or projects.</div>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-input" type="text" id="chatInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button class="chat-send" onclick="sendChat()" id="chatSendBtn">Send</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Denish J. M.</div>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/" target="_blank">LinkedIn</a>
+    <a href="/cdn-cgi/l/email-protection#8febeae1e6fce7cfeaf7eee2ffe3eaa1ece0e2" id="footerEmail">Email</a>
+    <a href="https://github.com/denish420" target="_blank">GitHub</a>
+    <a href="#" onclick="openAdmin();return false;" data-en="Update Profile" data-de="Profil aktualisieren">Update Profile</a>
+  </div>
+  <div class="footer-copy" id="footerCopy">© 2026 Denish J. M. · Last updated: <span id="lastUpdated">—</span></div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay" id="adminOverlay" onclick="if(event.target===this)closeAdmin()">
+  <div class="admin-panel">
+    <button class="admin-close" onclick="closeAdmin()">×</button>
+    <div class="admin-title">✏️ Update Profile</div>
+    <div class="admin-sub">Changes apply instantly. No reload needed.</div>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchAdminTab('basic',this)">Basic</button>
+      <button class="admin-tab" onclick="switchAdminTab('experience',this)">Experience</button>
+      <button class="admin-tab" onclick="switchAdminTab('skills',this)">Skills</button>
+      <button class="admin-tab" onclick="switchAdminTab('api',this)">API</button>
+    </div>
+
+    <!-- Basic Tab -->
+    <div class="admin-pane active" id="pane-basic">
+      <div class="form-group">
+        <label class="form-label">Bio / About</label>
+        <textarea class="form-control" id="adminBio" rows="3">Simulation-focused engineer with hands-on experience in FEM, crash safety, and CAE tooling. Passionate about pushing boundaries in automotive and semiconductor process simulation.</textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-control" type="email" id="adminEmail" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">LinkedIn URL</label>
+        <input class="form-control" type="url" id="adminLinkedin" placeholder="https://linkedin.com/in/yourname">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Profile Photo URL (optional)</label>
+        <input class="form-control" type="url" id="adminPhoto" placeholder="https://... or leave blank">
+      </div>
+      <div class="form-group">
+        <label class="form-label">LinkedIn Export JSON (paste here to auto-fill all fields)</label>
+        <textarea class="form-control" id="adminLinkedinJson" rows="4" placeholder='Paste your LinkedIn exported JSON data here...'></textarea>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="parseLinkedIn()" style="margin-bottom:10px">Parse LinkedIn Data</button>
+      <button class="btn btn-primary btn-full" onclick="saveBasic()">Save Changes</button>
+    </div>
+
+    <!-- Experience Tab -->
+    <div class="admin-pane" id="pane-experience">
+      <div class="form-group">
+        <label class="form-label">Experience (JSON)</label>
+        <textarea class="form-control" id="adminExperience" rows="10" placeholder='[{"year":"2022","role":"Engineer","company":"Company","desc":"Description"}]'></textarea>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="saveExperience()">Save Experience</button>
+    </div>
+
+    <!-- Skills Tab -->
+    <div class="admin-pane" id="pane-skills">
+      <div class="form-group">
+        <label class="form-label">Skills (comma separated — prefix with * for highlighted)</label>
+        <textarea class="form-control" id="adminSkills" rows="5" placeholder="*ANSYS, *COMSOL, SolidWorks, Python..."></textarea>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="saveSkills()">Save Skills</button>
+    </div>
+
+    <!-- API Tab -->
+    <div class="admin-pane" id="pane-api">
+      <p style="font-size:13px;color:var(--text2);line-height:1.7">
+        Your Groq API key is stored securely on the server inside PythonAnywhere as an environment variable. It is never exposed to visitors or visible in the page source.
+      </p>
+      <p style="font-size:13px;color:var(--text3);margin-top:12px;line-height:1.7">
+        To update the key, go to PythonAnywhere → <strong>Web tab</strong> → <strong>Environment variables</strong> → set <code style="font-family:var(--mono);background:var(--surface2);padding:2px 6px;border-radius:4px">GROQ_API_KEY</code> → Reload.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ============================================================
+// DATA
+// ============================================================
+const PROFILE = {
+  bio: "Simulation-focused engineer with hands-on experience in FEM, crash safety, and CAE tooling. Passionate about pushing boundaries in automotive and semiconductor process simulation.",
+  email: "",
+  linkedin: "",
+  photo: "",
+  groqKey: localStorage.getItem('groqKey') || ""
+};
+
+let currentLang = 'en';
+
+// Load saved data
+try {
+  const saved = JSON.parse(localStorage.getItem('profileData') || '{}');
+  Object.assign(PROFILE, saved);
+  PROFILE.groqKey = localStorage.getItem('groqKey') || "";
+} catch(e){}
+
+// ============================================================
+// INIT
+// ============================================================
+window.addEventListener('DOMContentLoaded', () => {
+  applyProfile();
+  updateLastUpdated();
+  // Pre-fill admin fields
+  document.getElementById('adminBio').value = PROFILE.bio;
+  document.getElementById('adminEmail').value = PROFILE.email;
+  document.getElementById('adminLinkedin').value = PROFILE.linkedin;
+  document.getElementById('adminPhoto').value = PROFILE.photo;
+  document.getElementById('adminGroqKey').value = PROFILE.groqKey;
+});
+
+function applyProfile() {
+  // Bio
+  document.getElementById('heroBio').setAttribute('data-en', PROFILE.bio);
+  if(currentLang === 'en') document.getElementById('heroBio').textContent = PROFILE.bio;
+
+  // Email
+  if(PROFILE.email) {
+    document.getElementById('contactBtn').href = 'mailto:' + PROFILE.email;
+    document.getElementById('footerEmail').href = 'mailto:' + PROFILE.email;
+  }
+
+  // LinkedIn
+  if(PROFILE.linkedin) {
+    document.querySelectorAll('a[href="https://linkedin.com/in/"]').forEach(a => a.href = PROFILE.linkedin);
+  }
+
+  // Photo
+  const photoEl = document.getElementById('heroPhoto');
+  if(PROFILE.photo) {
+    photoEl.innerHTML = '<img src="' + PROFILE.photo + '" alt="Denish J. M." onerror="this.parentElement.innerHTML=\'<span class=hero-photo-placeholder>🧑‍💻</span>\'">';
+  }
+}
+
+// ============================================================
+// LANGUAGE TOGGLE
+// ============================================================
+function toggleLanguage() {
+  currentLang = currentLang === 'en' ? 'de' : 'en';
+  const btn = document.getElementById('langBtn');
+  btn.textContent = currentLang === 'en' ? '🇩🇪 DE' : '🇬🇧 EN';
+
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const text = el.getAttribute('data-' + currentLang);
+    if(text) {
+      if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = text;
+      else el.textContent = text;
+    }
+  });
+
+  // Update chat placeholder
+  document.getElementById('chatInput').placeholder = currentLang === 'de' ? 'Frage eingeben...' : 'Type your question...';
+
+  showToast(currentLang === 'de' ? '🇩🇪 Auf Deutsch gewechselt' : '🇬🇧 Switched to English');
+}
+
+// ============================================================
+// AI — GENERATE BIO
+// ============================================================
+async function generateSummary() {
+  const btn = document.getElementById('summaryBtn');
+  const textEl = document.getElementById('aiSummaryText');
+  btn.textContent = '⏳ Generating...';
+  btn.disabled = true;
+
+  try {
+    const lang = currentLang === 'de' ? 'German' : 'English';
+    const res = await fetch('https://denish420.pythonanywhere.com/portfolio/summary', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ lang })
+    });
+    const data = await res.json();
+    textEl.textContent = data.bio || 'Could not generate bio.';
+    showToast('✦ Bio generated');
+  } catch(e) {
+    textEl.textContent = 'Error connecting. Make sure your PythonAnywhere app is running.';
+  }
+
+  btn.textContent = currentLang === 'de' ? '✦ KI-Bio generieren' : '✦ Generate AI Bio';
+  btn.disabled = false;
+}
+
+// ============================================================
+// AI — CHAT
+// ============================================================
+const chatHistory = [];
+
+function askSuggestion(btn) {
+  document.getElementById('chatInput').value = btn.getAttribute('data-' + currentLang) || btn.textContent;
+  sendChat();
+}
+
+async function sendChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+
+  input.value = '';
+  addChatMsg(msg, 'user');
+
+  const sendBtn = document.getElementById('chatSendBtn');
+  sendBtn.disabled = true;
+  sendBtn.innerHTML = '<span class="spinner"></span>';
+
+  chatHistory.push({role:'user', content: msg});
+
+  try {
+    const res = await fetch('https://denish420.pythonanywhere.com/portfolio/chat', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        message: msg,
+        history: chatHistory.slice(-6)
+      })
+    });
+    const data = await res.json();
+    const reply = data.reply || 'Sorry, something went wrong.';
+    chatHistory.push({role:'assistant', content:reply});
+    addChatMsg(reply, 'ai');
+  } catch(e) {
+    addChatMsg('Connection error. Make sure your PythonAnywhere app is running.', 'ai');
+  }
+
+  sendBtn.disabled = false;
+  sendBtn.textContent = 'Send';
+}
+
+function addChatMsg(text, role) {
+  const box = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + role;
+  div.textContent = text;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+// ============================================================
+// ADMIN PANEL
+// ============================================================
+function openAdmin() { document.getElementById('adminOverlay').classList.add('open'); }
+function closeAdmin() { document.getElementById('adminOverlay').classList.remove('open'); }
+
+function switchAdminTab(name, btn) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.admin-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pane-'+name).classList.add('active');
+}
+
+function saveBasic() {
+  PROFILE.bio = document.getElementById('adminBio').value;
+  PROFILE.email = document.getElementById('adminEmail').value;
+  PROFILE.linkedin = document.getElementById('adminLinkedin').value;
+  PROFILE.photo = document.getElementById('adminPhoto').value;
+  localStorage.setItem('profileData', JSON.stringify(PROFILE));
+  localStorage.setItem('lastUpdated', new Date().toISOString());
+  applyProfile();
+  updateLastUpdated();
+  closeAdmin();
+  showToast('✓ Profile updated');
+}
+
+function saveApiKey() {
+  const key = document.getElementById('adminGroqKey').value.trim();
+  PROFILE.groqKey = key;
+  localStorage.setItem('groqKey', key);
+  showToast('✓ API key saved');
+}
+
+function saveExperience() {
+  try {
+    const data = JSON.parse(document.getElementById('adminExperience').value);
+    const timeline = document.getElementById('experienceTimeline');
+    timeline.innerHTML = data.map(e => `
+      <div class="timeline-item">
+        <div class="timeline-year">${e.year||''}</div>
+        <div class="timeline-content">
+          <div class="timeline-role">${e.role||''}</div>
+          <div class="timeline-company">${e.company||''}</div>
+          <div class="timeline-desc">${e.desc||''}</div>
+        </div>
+      </div>`).join('');
+    showToast('✓ Experience updated');
+    closeAdmin();
+  } catch(e) { showToast('Invalid JSON — check format'); }
+}
+
+function saveSkills() {
+  const raw = document.getElementById('adminSkills').value;
+  const skills = raw.split(',').map(s => s.trim()).filter(Boolean);
+  const grid = document.getElementById('skillsGrid');
+  grid.innerHTML = skills.map(s => {
+    const isHL = s.startsWith('*');
+    const name = isHL ? s.slice(1) : s;
+    return `<span class="skill-pill${isHL?' highlight':''}">${name}</span>`;
+  }).join('');
+  showToast('✓ Skills updated');
+  closeAdmin();
+}
+
+function parseLinkedIn() {
+  try {
+    const raw = document.getElementById('adminLinkedinJson').value.trim();
+    if(!raw) { showToast('Paste your LinkedIn JSON first'); return; }
+    const data = JSON.parse(raw);
+
+    // Try common LinkedIn export fields
+    if(data.summary) document.getElementById('adminBio').value = data.summary;
+    else if(data.headline) document.getElementById('adminBio').value = data.headline;
+
+    if(data.emailAddress) document.getElementById('adminEmail').value = data.emailAddress;
+    if(data.publicProfileUrl) document.getElementById('adminLinkedin').value = data.publicProfileUrl;
+
+    // Experience
+    const positions = data.positions?.values || data.experience || [];
+    if(positions.length) {
+      const exp = positions.map(p => ({
+        year: p.startDate?.year || p.start_date || '',
+        role: p.title || p.role || '',
+        company: p.company?.name || p.companyName || p.company || '',
+        desc: p.summary || p.description || ''
+      }));
+      document.getElementById('adminExperience').value = JSON.stringify(exp, null, 2);
+    }
+
+    showToast('✓ LinkedIn data parsed');
+  } catch(e) {
+    showToast('Could not parse — check your JSON format');
+  }
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function updateLastUpdated() {
+  const d = localStorage.getItem('lastUpdated');
+  if(d) {
+    const date = new Date(d);
+    document.getElementById('lastUpdated').textContent = date.
